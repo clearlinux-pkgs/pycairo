@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5A62D0CAB6264964 (reiter.christoph@gmail.com)
 #
 Name     : pycairo
-Version  : 1.15.4
-Release  : 2
-URL      : https://github.com/pygobject/pycairo/releases/download/v1.15.4/pycairo-1.15.4.tar.gz
-Source0  : https://github.com/pygobject/pycairo/releases/download/v1.15.4/pycairo-1.15.4.tar.gz
-Source99 : https://github.com/pygobject/pycairo/releases/download/v1.15.4/pycairo-1.15.4.tar.gz.sig
+Version  : 1.16.0
+Release  : 3
+URL      : https://github.com/pygobject/pycairo/releases/download/v1.16.0/pycairo-1.16.0.tar.gz
+Source0  : https://github.com/pygobject/pycairo/releases/download/v1.16.0/pycairo-1.16.0.tar.gz
+Source99 : https://github.com/pygobject/pycairo/releases/download/v1.16.0/pycairo-1.16.0.tar.gz.sig
 Summary  : Python interface for cairo
 Group    : Development/Tools
 License  : LGPL-2.1 MPL-1.1
@@ -76,19 +76,19 @@ python3 components for the pycairo package.
 
 
 %prep
-%setup -q -n pycairo-1.15.4
+%setup -q -n pycairo-1.16.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517853561
+export SOURCE_DATE_EPOCH=1517854347
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1517853561
+export SOURCE_DATE_EPOCH=1517854347
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -108,6 +108,8 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 /usr/include/pycairo/py3cairo.h
 /usr/include/pycairo/pycairo.h
+/usr/lib/python2.7/site-packages/cairo/include/pycairo.h
+/usr/lib/python3.6/site-packages/cairo/include/py3cairo.h
 
 %files legacypython
 %defattr(-,root,root,-)
