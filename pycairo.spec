@@ -6,7 +6,7 @@
 #
 Name     : pycairo
 Version  : 1.16.0
-Release  : 3
+Release  : 4
 URL      : https://github.com/pygobject/pycairo/releases/download/v1.16.0/pycairo-1.16.0.tar.gz
 Source0  : https://github.com/pygobject/pycairo/releases/download/v1.16.0/pycairo-1.16.0.tar.gz
 Source99 : https://github.com/pygobject/pycairo/releases/download/v1.16.0/pycairo-1.16.0.tar.gz.sig
@@ -15,7 +15,6 @@ Group    : Development/Tools
 License  : LGPL-2.1 MPL-1.1
 Requires: pycairo-legacypython
 Requires: pycairo-python3
-Requires: pycairo-data
 Requires: pycairo-python
 BuildRequires : pbr
 BuildRequires : pip
@@ -23,24 +22,16 @@ BuildRequires : pkgconfig(cairo)
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
+Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
 
 %description
 .. image:: https://cdn.rawgit.com/pygobject/pycairo/master/docs/images/pycairo.svg
 :align: center
 :width: 370px
 
-%package data
-Summary: data components for the pycairo package.
-Group: Data
-
-%description data
-data components for the pycairo package.
-
-
 %package dev
 Summary: dev components for the pycairo package.
 Group: Development
-Requires: pycairo-data
 Provides: pycairo-devel
 
 %description dev
@@ -77,18 +68,19 @@ python3 components for the pycairo package.
 
 %prep
 %setup -q -n pycairo-1.16.0
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517854347
+export SOURCE_DATE_EPOCH=1517856398
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1517854347
+export SOURCE_DATE_EPOCH=1517856398
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -99,17 +91,14 @@ echo ----[ mark ]----
 %files
 %defattr(-,root,root,-)
 
-%files data
-%defattr(-,root,root,-)
-/usr/share/pkgconfig/py3cairo.pc
-/usr/share/pkgconfig/pycairo.pc
-
 %files dev
 %defattr(-,root,root,-)
 /usr/include/pycairo/py3cairo.h
 /usr/include/pycairo/pycairo.h
 /usr/lib/python2.7/site-packages/cairo/include/pycairo.h
 /usr/lib/python3.6/site-packages/cairo/include/py3cairo.h
+/usr/lib64/pkgconfig/py3cairo.pc
+/usr/lib64/pkgconfig/pycairo.pc
 
 %files legacypython
 %defattr(-,root,root,-)
