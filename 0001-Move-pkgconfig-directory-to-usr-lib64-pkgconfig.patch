@@ -1,25 +1,11 @@
-From ef905ed924bac7d7c729b7a561212590670a195d Mon Sep 17 00:00:00 2001
-From: William Douglas <william.douglas@intel.com>
-Date: Mon, 5 Feb 2018 18:39:56 +0000
-Subject: [PATCH] Move pkgconfig directory to /usr/lib64/pkgconfig
-
----
- setup.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/setup.py b/setup.py
-index 0d7f285..bea2d84 100755
---- a/setup.py
-+++ b/setup.py
-@@ -145,7 +145,7 @@ class install_pkgconfig(Command):
-                 "Skipping install_pkgconfig, not supported with MSVC")
+--- pycairo-1.16.1/setup.py~	2018-02-06 12:41:23.000000000 +0000
++++ pycairo-1.16.1/setup.py	2018-02-06 15:23:51.194453807 +0000
+@@ -147,7 +147,7 @@
              return
  
--        pkgconfig_dir = os.path.join(self.install_data, "share", "pkgconfig")
-+        pkgconfig_dir = os.path.join(self.install_data, "lib64", "pkgconfig")
+         python_lib = sysconfig.get_python_lib(True, True, self.install_data)
+-        pkgconfig_dir = os.path.join(os.path.dirname(python_lib), 'pkgconfig')
++        pkgconfig_dir = os.path.join(self.install_data, "lib64", 'pkgconfig')
          self.mkpath(pkgconfig_dir)
  
          if sys.version_info[0] == 3:
--- 
-2.16.1
-

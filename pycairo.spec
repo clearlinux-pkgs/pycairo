@@ -6,7 +6,7 @@
 #
 Name     : pycairo
 Version  : 1.16.1
-Release  : 5
+Release  : 6
 URL      : https://github.com/pygobject/pycairo/releases/download/v1.16.1/pycairo-1.16.1.tar.gz
 Source0  : https://github.com/pygobject/pycairo/releases/download/v1.16.1/pycairo-1.16.1.tar.gz
 Source99 : https://github.com/pygobject/pycairo/releases/download/v1.16.1/pycairo-1.16.1.tar.gz.sig
@@ -22,6 +22,7 @@ BuildRequires : pkgconfig(cairo)
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
+Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
 
 %description
 .. image:: https://cdn.rawgit.com/pygobject/pycairo/master/docs/images/pycairo.svg
@@ -66,18 +67,19 @@ python3 components for the pycairo package.
 
 %prep
 %setup -q -n pycairo-1.16.1
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517930566
+export SOURCE_DATE_EPOCH=1517930737
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1517930566
+export SOURCE_DATE_EPOCH=1517930737
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -92,10 +94,10 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 /usr/include/pycairo/py3cairo.h
 /usr/include/pycairo/pycairo.h
-/usr/lib/pkgconfig/py3cairo.pc
-/usr/lib/pkgconfig/pycairo.pc
 /usr/lib/python2.7/site-packages/cairo/include/pycairo.h
 /usr/lib/python3.6/site-packages/cairo/include/py3cairo.h
+/usr/lib64/pkgconfig/py3cairo.pc
+/usr/lib64/pkgconfig/pycairo.pc
 
 %files legacypython
 %defattr(-,root,root,-)
