@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5A62D0CAB6264964 (reiter.christoph@gmail.com)
 #
 Name     : pycairo
-Version  : 1.16.1
-Release  : 7
-URL      : https://github.com/pygobject/pycairo/releases/download/v1.16.1/pycairo-1.16.1.tar.gz
-Source0  : https://github.com/pygobject/pycairo/releases/download/v1.16.1/pycairo-1.16.1.tar.gz
-Source99 : https://github.com/pygobject/pycairo/releases/download/v1.16.1/pycairo-1.16.1.tar.gz.sig
+Version  : 1.16.2
+Release  : 8
+URL      : https://github.com/pygobject/pycairo/releases/download/v1.16.2/pycairo-1.16.2.tar.gz
+Source0  : https://github.com/pygobject/pycairo/releases/download/v1.16.2/pycairo-1.16.2.tar.gz
+Source99 : https://github.com/pygobject/pycairo/releases/download/v1.16.2/pycairo-1.16.2.tar.gz.sig
 Summary  : Python interface for cairo
 Group    : Development/Tools
 License  : LGPL-2.1 MPL-1.1
@@ -66,7 +66,7 @@ python3 components for the pycairo package.
 
 
 %prep
-%setup -q -n pycairo-1.16.1
+%setup -q -n pycairo-1.16.2
 %patch1 -p1
 
 %build
@@ -74,12 +74,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517930737
+export SOURCE_DATE_EPOCH=1518292535
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1517930737
+export SOURCE_DATE_EPOCH=1518292535
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
