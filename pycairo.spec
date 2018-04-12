@@ -6,14 +6,13 @@
 #
 Name     : pycairo
 Version  : 1.16.3
-Release  : 11
+Release  : 12
 URL      : https://github.com/pygobject/pycairo/releases/download/v1.16.3/pycairo-1.16.3.tar.gz
 Source0  : https://github.com/pygobject/pycairo/releases/download/v1.16.3/pycairo-1.16.3.tar.gz
 Source99 : https://github.com/pygobject/pycairo/releases/download/v1.16.3/pycairo-1.16.3.tar.gz.sig
 Summary  : Python interface for cairo
 Group    : Development/Tools
 License  : LGPL-2.1 MPL-1.1
-Requires: pycairo-legacypython
 Requires: pycairo-python3
 Requires: pycairo-python
 BuildRequires : pbr
@@ -36,15 +35,6 @@ Provides: pycairo-devel
 
 %description dev
 dev components for the pycairo package.
-
-
-%package legacypython
-Summary: legacypython components for the pycairo package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the pycairo package.
 
 
 %package python
@@ -74,15 +64,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523040844
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1523550619
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1523040844
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -93,15 +80,8 @@ echo ----[ mark ]----
 %files dev
 %defattr(-,root,root,-)
 /usr/include/pycairo/py3cairo.h
-/usr/include/pycairo/pycairo.h
-/usr/lib/python2.7/site-packages/cairo/include/pycairo.h
 /usr/lib/python3.6/site-packages/cairo/include/py3cairo.h
 /usr/lib64/pkgconfig/py3cairo.pc
-/usr/lib64/pkgconfig/pycairo.pc
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files python
 %defattr(-,root,root,-)
