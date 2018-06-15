@@ -18,7 +18,7 @@ Requires: pycairo-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pkgconfig(cairo)
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
