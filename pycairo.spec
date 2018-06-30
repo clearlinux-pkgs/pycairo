@@ -6,7 +6,7 @@
 #
 Name     : pycairo
 Version  : 1.17.0
-Release  : 20
+Release  : 21
 URL      : https://github.com/pygobject/pycairo/releases/download/v1.17.0/pycairo-1.17.0.tar.gz
 Source0  : https://github.com/pygobject/pycairo/releases/download/v1.17.0/pycairo-1.17.0.tar.gz
 Source99 : https://github.com/pygobject/pycairo/releases/download/v1.17.0/pycairo-1.17.0.tar.gz.sig
@@ -14,13 +14,17 @@ Summary  : Python interface for cairo
 Group    : Development/Tools
 License  : LGPL-2.1 MPL-1.1
 Requires: pycairo-python3
+Requires: pycairo-license
 Requires: pycairo-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pkgconfig(cairo)
-
+BuildRequires : python-core
+BuildRequires : python-dev
+BuildRequires : python3-core
 BuildRequires : python3-dev
 BuildRequires : setuptools
+BuildRequires : setuptools-legacypython
 Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
 
 %description
@@ -44,6 +48,14 @@ Requires: python-core
 
 %description legacypython
 legacypython components for the pycairo package.
+
+
+%package license
+Summary: license components for the pycairo package.
+Group: Default
+
+%description license
+license components for the pycairo package.
 
 
 %package python
@@ -73,13 +85,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1527263028
+export SOURCE_DATE_EPOCH=1530382349
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1527263028
+export SOURCE_DATE_EPOCH=1530382349
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/pycairo
+cp COPYING %{buildroot}/usr/share/doc/pycairo/COPYING
+cp COPYING-MPL-1.1 %{buildroot}/usr/share/doc/pycairo/COPYING-MPL-1.1
+cp COPYING-LGPL-2.1 %{buildroot}/usr/share/doc/pycairo/COPYING-LGPL-2.1
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 echo ----[ mark ]----
@@ -94,13 +110,19 @@ echo ----[ mark ]----
 /usr/include/pycairo/py3cairo.h
 /usr/include/pycairo/pycairo.h
 /usr/lib/python2.7/site-packages/cairo/include/pycairo.h
-/usr/lib/python3.6/site-packages/cairo/include/py3cairo.h
+/usr/lib/python3.7/site-packages/cairo/include/py3cairo.h
 /usr/lib64/pkgconfig/py3cairo.pc
 /usr/lib64/pkgconfig/pycairo.pc
 
 %files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/pycairo/COPYING
+/usr/share/doc/pycairo/COPYING-LGPL-2.1
+/usr/share/doc/pycairo/COPYING-MPL-1.1
 
 %files python
 %defattr(-,root,root,-)
