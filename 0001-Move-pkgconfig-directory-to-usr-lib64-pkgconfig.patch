@@ -1,11 +1,15 @@
---- pycairo-1.16.1/setup.py~	2018-02-06 12:41:23.000000000 +0000
-+++ pycairo-1.16.1/setup.py	2018-02-06 15:23:51.194453807 +0000
-@@ -147,7 +147,7 @@
+diff -ru pycairo-1.18.0/setup.py pycairo-1.18.0~/setup.py
+--- pycairo-1.18.0/setup.py	2018-11-04 02:56:41.000000000 -0800
++++ pycairo-1.18.0~/setup.py	2019-01-08 17:20:44.546588072 -0800
+@@ -326,10 +326,7 @@
              return
  
-         python_lib = sysconfig.get_python_lib(True, True, self.install_data)
--        pkgconfig_dir = os.path.join(os.path.dirname(python_lib), 'pkgconfig')
-+        pkgconfig_dir = os.path.join(self.install_data, "lib64", 'pkgconfig')
+         if self.pkgconfigdir is None:
+-            python_lib = sysconfig.get_python_lib(True, True,
+-                                                  self.install_data)
+-            pkgconfig_dir = os.path.join(os.path.dirname(python_lib),
+-                                         'pkgconfig')
++            pkgconfig_dir = os.path.join(self.install_data, "lib64", 'pkgconfig')
+         else:
+             pkgconfig_dir = change_root(self.root, self.pkgconfigdir)
          self.mkpath(pkgconfig_dir)
- 
-         if sys.version_info[0] == 3:
