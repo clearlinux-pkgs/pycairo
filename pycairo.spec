@@ -6,7 +6,7 @@
 #
 Name     : pycairo
 Version  : 1.18.0
-Release  : 27
+Release  : 28
 URL      : https://github.com/pygobject/pycairo/releases/download/v1.18.0/pycairo-1.18.0.tar.gz
 Source0  : https://github.com/pygobject/pycairo/releases/download/v1.18.0/pycairo-1.18.0.tar.gz
 Source99 : https://github.com/pygobject/pycairo/releases/download/v1.18.0/pycairo-1.18.0.tar.gz.sig
@@ -16,11 +16,9 @@ License  : LGPL-2.1 MPL-1.1
 Requires: pycairo-license = %{version}-%{release}
 Requires: pycairo-python = %{version}-%{release}
 Requires: pycairo-python3 = %{version}-%{release}
-BuildRequires : buildreq-distutils23
 BuildRequires : buildreq-distutils3
 BuildRequires : buildreq-meson
 BuildRequires : pkgconfig(cairo)
-BuildRequires : python-dev
 Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
 
 %description
@@ -32,18 +30,10 @@ Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
 Summary: dev components for the pycairo package.
 Group: Development
 Provides: pycairo-devel = %{version}-%{release}
+Requires: pycairo = %{version}-%{release}
 
 %description dev
 dev components for the pycairo package.
-
-
-%package legacypython
-Summary: legacypython components for the pycairo package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the pycairo package.
 
 
 %package license
@@ -81,19 +71,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546997131
-python2 setup.py build -b py2
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1554344023
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %install
-export SOURCE_DATE_EPOCH=1546997131
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pycairo
 cp COPYING %{buildroot}/usr/share/package-licenses/pycairo/COPYING
 cp COPYING-LGPL-2.1 %{buildroot}/usr/share/package-licenses/pycairo/COPYING-LGPL-2.1
 cp COPYING-MPL-1.1 %{buildroot}/usr/share/package-licenses/pycairo/COPYING-MPL-1.1
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -104,15 +93,8 @@ echo ----[ mark ]----
 %files dev
 %defattr(-,root,root,-)
 /usr/include/pycairo/py3cairo.h
-/usr/include/pycairo/pycairo.h
-/usr/lib/python2.7/site-packages/cairo/include/pycairo.h
 /usr/lib/python3.7/site-packages/cairo/include/py3cairo.h
 /usr/lib64/pkgconfig/py3cairo.pc
-/usr/lib64/pkgconfig/pycairo.pc
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files license
 %defattr(0644,root,root,0755)
