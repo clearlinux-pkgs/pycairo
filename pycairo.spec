@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5A62D0CAB6264964 (reiter.christoph@gmail.com)
 #
 Name     : pycairo
-Version  : 1.18.0
-Release  : 29
-URL      : https://github.com/pygobject/pycairo/releases/download/v1.18.0/pycairo-1.18.0.tar.gz
-Source0  : https://github.com/pygobject/pycairo/releases/download/v1.18.0/pycairo-1.18.0.tar.gz
-Source99 : https://github.com/pygobject/pycairo/releases/download/v1.18.0/pycairo-1.18.0.tar.gz.sig
+Version  : 1.18.1
+Release  : 30
+URL      : https://github.com/pygobject/pycairo/releases/download/v1.18.1/pycairo-1.18.1.tar.gz
+Source0  : https://github.com/pygobject/pycairo/releases/download/v1.18.1/pycairo-1.18.1.tar.gz
+Source99 : https://github.com/pygobject/pycairo/releases/download/v1.18.1/pycairo-1.18.1.tar.gz.sig
 Summary  : Python interface for cairo
 Group    : Development/Tools
 License  : LGPL-2.1 MPL-1.1
@@ -63,7 +63,7 @@ python3 components for the pycairo package.
 
 
 %prep
-%setup -q -n pycairo-1.18.0
+%setup -q -n pycairo-1.18.1
 %patch1 -p1
 
 %build
@@ -71,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554344023
+export SOURCE_DATE_EPOCH=1555944186
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
