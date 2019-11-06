@@ -6,7 +6,7 @@
 #
 Name     : pycairo
 Version  : 1.18.2
-Release  : 32
+Release  : 35
 URL      : https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz
 Source0  : https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz
 Source1 : https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz.sig
@@ -31,7 +31,6 @@ Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
 Summary: dev components for the pycairo package.
 Group: Development
 Provides: pycairo-devel = %{version}-%{release}
-Requires: pycairo = %{version}-%{release}
 Requires: pycairo = %{version}-%{release}
 
 %description dev
@@ -66,6 +65,7 @@ python3 components for the pycairo package.
 
 %prep
 %setup -q -n pycairo-1.18.2
+cd %{_builddir}/pycairo-1.18.2
 %patch1 -p1
 
 %build
@@ -73,8 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1572822627
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1573769616
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -101,7 +100,7 @@ echo ----[ mark ]----
 %files dev
 %defattr(-,root,root,-)
 /usr/include/pycairo/py3cairo.h
-/usr/lib/python3.7/site-packages/cairo/include/py3cairo.h
+/usr/lib/python3.8/site-packages/cairo/include/py3cairo.h
 /usr/lib64/pkgconfig/py3cairo.pc
 
 %files license
