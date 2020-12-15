@@ -6,7 +6,7 @@
 #
 Name     : pycairo
 Version  : 1.18.2
-Release  : 43
+Release  : 44
 URL      : https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz
 Source0  : https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz
 Source1  : https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz.sig
@@ -74,7 +74,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1603399799
+export SOURCE_DATE_EPOCH=1607992561
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -101,7 +101,7 @@ echo ----[ mark ]----
 %files dev
 %defattr(-,root,root,-)
 /usr/include/pycairo/py3cairo.h
-/usr/lib/python3.8/site-packages/cairo/include/py3cairo.h
+/usr/lib/python3.9/site-packages/cairo/include/py3cairo.h
 /usr/lib64/pkgconfig/py3cairo.pc
 
 %files license
