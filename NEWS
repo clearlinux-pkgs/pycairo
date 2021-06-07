@@ -1,5 +1,54 @@
-Since version 1.11.0 Pycairo uses `Semantic Versioning
-<http://semver.org/>`__ i.e. the newest version is the latest stable one.
+.. _v1.20.1:
+
+1.20.1 - 2021-06-03
+-------------------
+
+* Use poetry for development :pr:`232`
+* setup.py: Respect the PKG_CONFIG environment variable :pr:`235`
+* Make import_cairo inline in addition to static :pr`224`
+* docs: Fix example in Pattern.set_filter() docs _pr_`221`
+* docs: Fix build with newer sphinx :pr:`222`
+* docs: Fix NumPy width, height-conventions in examples :pr:`231`
+* docs: Last parameter of rel_curve_to should be dy3, not dy4 :pr:`230`
+* mypy: Fixes for mypy 0.800+ :pr:`233`
+* mypy: Don't run mypy via pytest :pr:`234`
+
+.. _v1.20.0:
+
+1.20.0 - 2020-10-05
+-------------------
+
+* Require Python 3.6+ :pr:`201`
+* Require cairo 1.15.10+ :pr:`204`
+* docs: support Sphinx 3.0 :pr:`207`
+* meson: add 'tests' option to skip tests :pr:`188`
+* Windows: build wheels :pr:`197`
+* Add support for Python 3.9 and 3.10 :pr:`198` :pr:`202`
+* examples: add a Jupyter Notebook example :pr:`181`
+* Raise an error early when being passed a file object not opened in binary mode :pr:`205`
+* Add a pyproject.toml file :pr:`206`
+
+
+.. _v1.19.1:
+
+1.19.1 - 2020-02-16
+-------------------
+
+* docs: Add moderngl in the integration section. :pr:`174` (:user:`Einar Forselv <einarf>`)
+* Support os.PathLike with PyPy3 >= 7.3.0
+
+
+.. _v1.19.0:
+
+1.19.0 - 2020-01-23
+-------------------
+
+* Python 2 is no longer supported :pr:`172`
+* Add machine-readable license statement :pr:`158` (:user:`Maxim Ivanov <ulidtko>`)
+* travis-ci: Manually set sysroot so correct SDK is used (:user:`Stuart Axon <stuaxo>`)
+* Support Python 3.8 on Windows (because of DLL lookup changes)
+* Fix wrong type for set_dash() offset parameter in the docs/types.
+
 
 .. _v1.18.2:
 

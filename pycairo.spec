@@ -5,25 +5,24 @@
 # Source0 file verified with key 0x5A62D0CAB6264964 (reiter.christoph@gmail.com)
 #
 Name     : pycairo
-Version  : 1.18.2
-Release  : 47
-URL      : https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz
-Source0  : https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz
-Source1  : https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz.sig
+Version  : 1.20.1
+Release  : 48
+URL      : https://github.com/pygobject/pycairo/releases/download/v1.20.1/pycairo-1.20.1.tar.gz
+Source0  : https://github.com/pygobject/pycairo/releases/download/v1.20.1/pycairo-1.20.1.tar.gz
+Source1  : https://github.com/pygobject/pycairo/releases/download/v1.20.1/pycairo-1.20.1.tar.gz.sig
 Summary  : Python interface for cairo
 Group    : Development/Tools
-License  : LGPL-2.1 MPL-1.1
+License  : LGPL-2.1 LGPL-2.1-only MPL-1.1
 Requires: pycairo-license = %{version}-%{release}
 Requires: pycairo-python = %{version}-%{release}
 Requires: pycairo-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : buildreq-meson
 BuildRequires : pkgconfig(cairo)
-BuildRequires : util-linux
 Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
 
 %description
-.. image:: https://cdn.rawgit.com/pygobject/pycairo/master/docs/images/pycairo.svg
+.. image:: https://raw.githubusercontent.com/pygobject/pycairo/master/docs/images/pycairo.svg
 :align: center
 :width: 370px
 
@@ -65,8 +64,8 @@ python3 components for the pycairo package.
 
 
 %prep
-%setup -q -n pycairo-1.18.2
-cd %{_builddir}/pycairo-1.18.2
+%setup -q -n pycairo-1.20.1
+cd %{_builddir}/pycairo-1.20.1
 %patch1 -p1
 
 %build
@@ -74,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1607992561
+export SOURCE_DATE_EPOCH=1623101716
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -87,9 +86,8 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pycairo
-cp %{_builddir}/pycairo-1.18.2/COPYING %{buildroot}/usr/share/package-licenses/pycairo/416fd041af0dcb06ee5cad044623c18097dc1625
-cp %{_builddir}/pycairo-1.18.2/COPYING-LGPL-2.1 %{buildroot}/usr/share/package-licenses/pycairo/7898de9d8a0026da533e44a786a17e435d7697f0
-cp %{_builddir}/pycairo-1.18.2/COPYING-MPL-1.1 %{buildroot}/usr/share/package-licenses/pycairo/aba8d76d0af67d57da3c3c321caa59f3d242386b
+cp %{_builddir}/pycairo-1.20.1/COPYING-LGPL-2.1 %{buildroot}/usr/share/package-licenses/pycairo/7898de9d8a0026da533e44a786a17e435d7697f0
+cp %{_builddir}/pycairo-1.20.1/COPYING-MPL-1.1 %{buildroot}/usr/share/package-licenses/pycairo/aba8d76d0af67d57da3c3c321caa59f3d242386b
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -106,7 +104,6 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/pycairo/416fd041af0dcb06ee5cad044623c18097dc1625
 /usr/share/package-licenses/pycairo/7898de9d8a0026da533e44a786a17e435d7697f0
 /usr/share/package-licenses/pycairo/aba8d76d0af67d57da3c3c321caa59f3d242386b
 
