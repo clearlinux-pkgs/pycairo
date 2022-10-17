@@ -1,3 +1,15 @@
+.. _v1.21.0:
+
+1.21.0 - 2022-03-07
+-------------------
+
+* Require Python 3.7+ :pr:`250`
+* Require meson 0.53+
+* Using `setup.py` directly to build/install pycairo is deprecated.
+  Use meson instead.
+* `setup.py` now requires setuptools. Previously it was optional.
+* The complete API reference is now included in the typing stubs, so it can be consumed/shown by IDEs. :pr:`236` :pr:`252`
+
 .. _v1.20.1:
 
 1.20.1 - 2021-06-03
@@ -5,8 +17,8 @@
 
 * Use poetry for development :pr:`232`
 * setup.py: Respect the PKG_CONFIG environment variable :pr:`235`
-* Make import_cairo inline in addition to static :pr`224`
-* docs: Fix example in Pattern.set_filter() docs _pr_`221`
+* Make import_cairo inline in addition to static :pr:`224`
+* docs: Fix example in Pattern.set_filter() docs :pr:`221`
 * docs: Fix build with newer sphinx :pr:`222`
 * docs: Fix NumPy width, height-conventions in examples :pr:`231`
 * docs: Last parameter of rel_curve_to should be dy3, not dy4 :pr:`230`
@@ -236,7 +248,7 @@ Fixes:
 
 Fixes:
   * Improved support for Python filesystem paths including
-    :class:`os.PathLike`. See :class:`pathlike` for details.
+    :class:`os.PathLike`. See :class:`_PathLike` for details.
   * Various minor fixes
 
 Changes:
