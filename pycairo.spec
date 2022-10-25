@@ -6,7 +6,7 @@
 #
 Name     : pycairo
 Version  : 1.21.0
-Release  : 59
+Release  : 60
 URL      : https://github.com/pygobject/pycairo/releases/download/v1.21.0/pycairo-1.21.0.tar.gz
 Source0  : https://github.com/pygobject/pycairo/releases/download/v1.21.0/pycairo-1.21.0.tar.gz
 Source1  : https://github.com/pygobject/pycairo/releases/download/v1.21.0/pycairo-1.21.0.tar.gz.sig
