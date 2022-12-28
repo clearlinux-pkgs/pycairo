@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5A62D0CAB6264964 (reiter.christoph@gmail.com)
 #
 Name     : pycairo
-Version  : 1.21.0
-Release  : 61
-URL      : https://github.com/pygobject/pycairo/releases/download/v1.21.0/pycairo-1.21.0.tar.gz
-Source0  : https://github.com/pygobject/pycairo/releases/download/v1.21.0/pycairo-1.21.0.tar.gz
-Source1  : https://github.com/pygobject/pycairo/releases/download/v1.21.0/pycairo-1.21.0.tar.gz.sig
+Version  : 1.23.0
+Release  : 62
+URL      : https://github.com/pygobject/pycairo/releases/download/v1.23.0/pycairo-1.23.0.tar.gz
+Source0  : https://github.com/pygobject/pycairo/releases/download/v1.23.0/pycairo-1.23.0.tar.gz
+Source1  : https://github.com/pygobject/pycairo/releases/download/v1.23.0/pycairo-1.23.0.tar.gz.sig
 Summary  : Python interface for cairo
 Group    : Development/Tools
 License  : LGPL-2.1 LGPL-2.1-only MPL-1.1
@@ -22,7 +22,6 @@ BuildRequires : buildreq-distutils3
 BuildRequires : buildreq-meson
 BuildRequires : pkgconfig(cairo)
 BuildRequires : pypi(setuptools)
-BuildRequires : pypi(wheel)
 Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
 
 %description
@@ -88,11 +87,12 @@ python3 components for the pycairo package.
 
 
 %prep
-%setup -q -n pycairo-1.21.0
-cd %{_builddir}/pycairo-1.21.0
+%setup -q -n pycairo-1.23.0
+cd %{_builddir}/pycairo-1.23.0
 %patch1 -p1
 pushd ..
-cp -a pycairo-1.21.0 buildavx2
+cp -a pycairo-1.23.0 buildavx2
+cp -a pycairo-1.23.0 buildavx512
 popd
 
 %build
@@ -100,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1666722375
+export SOURCE_DATE_EPOCH=1672195045
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -110,8 +110,8 @@ export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
-export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -msse2avx "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -msse2avx"
 export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
@@ -122,14 +122,14 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pycairo
-cp %{_builddir}/pycairo-%{version}/COPYING-LGPL-2.1 %{buildroot}/usr/share/package-licenses/pycairo/7898de9d8a0026da533e44a786a17e435d7697f0 || :
-cp %{_builddir}/pycairo-%{version}/COPYING-MPL-1.1 %{buildroot}/usr/share/package-licenses/pycairo/aba8d76d0af67d57da3c3c321caa59f3d242386b || :
+cp %{_builddir}/pycairo-%{version}/COPYING-LGPL-2.1 %{buildroot}/usr/share/package-licenses/pycairo/7898de9d8a0026da533e44a786a17e435d7697f0
+cp %{_builddir}/pycairo-%{version}/COPYING-MPL-1.1 %{buildroot}/usr/share/package-licenses/pycairo/aba8d76d0af67d57da3c3c321caa59f3d242386b
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -msse2avx "
 export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
