@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x5A62D0CAB6264964 (reiter.christoph@gmail.com)
 #
 Name     : pycairo
-Version  : 1.23.0
-Release  : 64
-URL      : https://github.com/pygobject/pycairo/releases/download/v1.23.0/pycairo-1.23.0.tar.gz
-Source0  : https://github.com/pygobject/pycairo/releases/download/v1.23.0/pycairo-1.23.0.tar.gz
-Source1  : https://github.com/pygobject/pycairo/releases/download/v1.23.0/pycairo-1.23.0.tar.gz.sig
+Version  : 1.25.0
+Release  : 65
+URL      : https://github.com/pygobject/pycairo/releases/download/v1.25.0/pycairo-1.25.0.tar.gz
+Source0  : https://github.com/pygobject/pycairo/releases/download/v1.25.0/pycairo-1.25.0.tar.gz
+Source1  : https://github.com/pygobject/pycairo/releases/download/v1.25.0/pycairo-1.25.0.tar.gz.sig
 Summary  : Python interface for cairo
 Group    : Development/Tools
 License  : LGPL-2.1 LGPL-2.1-only MPL-1.1
@@ -26,7 +26,7 @@ BuildRequires : pypi(setuptools)
 Patch1: 0001-Move-pkgconfig-directory-to-usr-lib64-pkgconfig.patch
 
 %description
-.. image:: https://raw.githubusercontent.com/pygobject/pycairo/master/docs/images/pycairo.svg
+.. image:: https://raw.githubusercontent.com/pygobject/pycairo/main/docs/images/pycairo.svg
 :align: center
 :width: 370px
 
@@ -68,11 +68,11 @@ python3 components for the pycairo package.
 
 
 %prep
-%setup -q -n pycairo-1.23.0
-cd %{_builddir}/pycairo-1.23.0
-%patch1 -p1
+%setup -q -n pycairo-1.25.0
+cd %{_builddir}/pycairo-1.25.0
+%patch -P 1 -p1
 pushd ..
-cp -a pycairo-1.23.0 buildavx2
+cp -a pycairo-1.25.0 buildavx2
 popd
 
 %build
@@ -80,7 +80,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685562798
+export SOURCE_DATE_EPOCH=1695766392
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
