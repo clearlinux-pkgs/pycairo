@@ -1,0 +1,40 @@
+From e21ea505d18f89b455348aab007623ef342e7430 Mon Sep 17 00:00:00 2001
+From: "Brett T. Warden" <brett.t.warden@intel.com>
+Date: Thu, 28 Sep 2023 17:11:30 -0700
+Subject: [PATCH] Enable building pkgconfig with bdist_wheel
+
+We need the pkgconfig file, and we're directly installing the wheel in a
+fixed location. Also install the header file in /usr/include.
+---
+ setup.py | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 94bdc4cdcec6..31f039b709d4 100755
+--- a/setup.py
++++ b/setup.py
+@@ -295,11 +295,6 @@ class install_pkgconfig(Command):
+         # prefix. pip uses wheels as cache and when installing with --user
+         # and then to a virtualenv, the wheel gets reused containing the
+         # wrong paths. So in case bdist_wheel is used, just skip this command.
+-        cmd = self.distribution.get_command_obj("bdist_wheel", create=False)
+-        if cmd is not None:
+-            log.info(
+-                "Skipping install_pkgconfig, not supported with bdist_wheel")
+-            return
+ 
+         # same for bdist_egg
+         cmd = self.distribution.get_command_obj("bdist_egg", create=False)
+@@ -383,9 +378,6 @@ class install_pycairo_header(Command):
+         (out, _) = self.copy_file(source, lib_header_path)
+         self.outfiles.append(out)
+ 
+-        cmd = self.distribution.get_command_obj("bdist_wheel", create=False)
+-        if cmd is not None:
+-            return
+         cmd = self.distribution.get_command_obj("bdist_egg", create=False)
+         if cmd is not None:
+             return
+-- 
+2.42.0
+
