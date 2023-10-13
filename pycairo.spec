@@ -7,7 +7,7 @@
 #
 Name     : pycairo
 Version  : 1.25.0
-Release  : 69
+Release  : 70
 URL      : https://github.com/pygobject/pycairo/releases/download/v1.25.0/pycairo-1.25.0.tar.gz
 Source0  : https://github.com/pygobject/pycairo/releases/download/v1.25.0/pycairo-1.25.0.tar.gz
 Source1  : https://github.com/pygobject/pycairo/releases/download/v1.25.0/pycairo-1.25.0.tar.gz.sig
@@ -80,7 +80,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1696009311
+export SOURCE_DATE_EPOCH=1697225087
 export GCC_IGNORE_WERROR=1
 CLEAR_INTERMEDIATE_CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CLEAR_INTERMEDIATE_FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -122,7 +122,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %files dev
 %defattr(-,root,root,-)
 /usr/include/pycairo/py3cairo.h
-/usr/lib/python3.11/site-packages/cairo/include/py3cairo.h
+/usr/lib/python3.12/site-packages/cairo/include/py3cairo.h
 /usr/lib64/pkgconfig/py3cairo.pc
 
 %files license
