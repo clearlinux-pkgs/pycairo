@@ -1,3 +1,4 @@
-1.25.0
+1.25.1
+cairo-dev
 pkgconfig(cairo)
 python3-dev
